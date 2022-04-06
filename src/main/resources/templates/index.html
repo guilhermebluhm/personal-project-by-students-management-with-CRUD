@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gerenciamento de Alunos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h2>Alunos Cadastrados</h2>
+        <a th:href="@{/salvarNovoAluno}" class="btn btn-primary">Inserir novo aluno</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome do Aluno</th>
+                <th>Numero de Matricula</th>
+                <th>Curso Matriculado</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dados : ${alunos}">
+                <td th:text="${dados.id}"></td>
+                <td th:text="${dados.nome}"></td>
+                <td th:text="${dados.numeroMatricula}"></td>
+                <td th:text="${dados.cursoMatriculado}"></td>
+                <td><a th:href="@{/editarAluno/{id}(id=${dados.id})}" class="btn btn-warning">Editar</a></td>
+                <td><a th:href="@{/removerAluno/{id}(id=${dados.id})}" class="btn btn-danger">Excluir</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
